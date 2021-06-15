@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+<div class="appContainer">
+    <div id="Bigcontainer"> 
+        <div class="dateContainer">
+            <div class="detail">
+                <div class="day">
+                    {{utcDate}}
+                </div>
+                <div class="year">
+                <p>{{month}}</p>
+                <p>{{year}}</p> 
+                </div>
+            </div>
+            <div class="dayName">
+                <p>{{day}}</p>
+            </div>      
+        </div>
+        
+        <div *ngIf="gh; then solid; else hidden" >
+        </div>
+
+        <div *ngIf="flag;then show">
+        
+        </div>
+            
+        <!-- <p>`You have {{tasks.length}} tasks today`</p> -->
+       
+        <!-- templates -->
+        <ng-template #show>
+            <div id="tasksContainer">
+                <div *ngFor="let item of tasks ; index as i" class="fd">
+                    <div class="container">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </div>
+        
+                    <label>
+                        <div class="semiContainer">
+                            <div (click)="update(item.id)">
+                                {{item.title}}
+                            </div>
+                            <i class="bi bi-trash" (click)="delete(item.id)"></i>
+                        </div>
+                         
+                    </label>
+                </div>
+            </div>
+            <button (click)="changeFlag()" >+ New Task</button>
+        </ng-template>
+
+        <ng-template #solid>
+            <div class="inputDiv">
+                <p>Tasks</p>
+            </div>
+        </ng-template>
+
+        <ng-template #hidden>
+            <div class="textbox">
+                <span (click)="addToDo()" >+</span>
+                <input [(ngModel)]="name" class="fake" placeholder="write your task here..">
+            </div>
+        </ng-template>
+    </div>
+</div>
+
